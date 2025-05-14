@@ -94,6 +94,8 @@ DATABASES = {
     }
 }
 
+DATABASES["default"] = dj_database_url.parse("postgresql://backendapipit_user:mma4MAD0AqKKW1n8z1Bx6JryT0eP6qPA@dpg-d0icf13e5dus738bpqr0-a.oregon-postgres.render.com/backendapipit")
+
 
 
 # Password validation
