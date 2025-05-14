@@ -21,7 +21,7 @@ from accounts.views import SensorReadingView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('bisag-unsa/', include('djoser.urls')),
-    path('bisag-unsa/', include('djoser.urls.authtoken')),
+    path('api/', include('djoser.urls')),
+    path('api/', include('djoser.urls.authtoken')),
     path('api/sensor-reading/', SensorReadingView.as_view(), name='sensor-reading'),
 ]
