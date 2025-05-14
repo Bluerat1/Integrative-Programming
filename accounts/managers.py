@@ -3,16 +3,17 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, id_number, email, password, **extra_fields):
+    def create_user(self, id_number, email, password=None, **extra_fields):
+        if not id_number:
+            raise ValueError('The id_number must be set')
         if not email:
-            raise ValueError(_("dili daw email imong gi input."))
-        
+            raise ValueError('The email must be set')
         email = self.normalize_email(email)
-        user = self.model(email=email, id_number=id_number, **extra_fields)
+        user = self.model(id_number=id_number, email=email, **extra_fields)
         user.set_password(password)
-        user.save()
+        user.save(using=self._db)
         return user
-
+    
     def create_superuser(self, id_number, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
@@ -24,3 +25,4 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
 
         return self.create_user(id_number, email, password, **extra_fields)
+        
