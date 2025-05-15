@@ -27,6 +27,9 @@ SECRET_KEY = 'django-insecure-&w9e=&#vg+rhlkasdee5zur--sm144q*jjohnz3@md9@!t+ty1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+ALLOWED_HOSTS = ['*']
+
 CORS_ALLOW_METHODS = [
     "GET",
     "POST",
@@ -40,9 +43,6 @@ CORS_ALLOW_HEADERS = [
     "authorization",
     "content-type",
 ]
-
-ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -78,10 +78,10 @@ REST_FRAMEWORK = {
 }
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-    'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-    'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticated',
     ],
 }
 
@@ -126,7 +126,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  
     "https://bluerat1.github.io",
     "http://localhost:8000",
-    "http://127.0.0.1:8000",      
+    "http://127.0.0.1:8000",
+    "https://integrative-programming.onrender.com/",      
 ]
 
 # Password validation
