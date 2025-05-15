@@ -6,6 +6,8 @@ from .views import EnergyDataViewSet
 router = DefaultRouter()
 router.register('energy-data', EnergyDataViewSet, basename='energydata')
 
+
+
 urlpatterns = [
     path('', include(router.urls)),
     # …other patterns…
