@@ -100,16 +100,14 @@ WSGI_APPLICATION = 'energy_monitor.wsgi.application'
 
 DATABASES = {
   'default': {
-    'ENGINE': 'django.db.backends.postgresql',    # or sqlite3, mysql, etc.
-    'NAME': 'backendapipit',
-    'USER': 'backendapipit_user',
-    'PASSWORD': 'mma4MAD0AqKKW1n8z1Bx6JryT0eP6qPA',
-    'HOST': 'dpg-d0icf13e5dus738bpqr0-a',
-    'PORT': '5432',
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': BASE_DIR / 'db.sqlite3',
   }
 }
 
-DATABASES["default"] = dj_database_url.parse("postgresql://backendapipit_user:mma4MAD0AqKKW1n8z1Bx6JryT0eP6qPA@dpg-d0icf13e5dus738bpqr0-a.oregon-postgres.render.com/backendapipit")
+if os.environ.get('DATABASE_URL'):
+          DATABASES["default"] = dj_database_url.parse("postgresql://backendapipit_user:mma4MAD0AqKKW1n8z1Bx6JryT0eP6qPA@dpg-d0icf13e5dus738bpqr0-a.oregon-postgres.render.com/backendapipit")
+
 
 
 # Password validation
