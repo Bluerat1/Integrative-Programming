@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,6 +27,19 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
+]
+
+CORS_ALLOW_HEADERS = [
+    "authorization",
+    "content-type",
+]
 
 # Application definition
 
@@ -45,6 +58,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -89,6 +103,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+DATABASES["default"] = dj_database_url.parse("postgresql://backendapipit_user:mma4MAD0AqKKW1n8z1Bx6JryT0eP6qPA@dpg-d0icf13e5dus738bpqr0-a.oregon-postgres.render.com/backendapipit")
 
 
 # Password validation
@@ -131,3 +146,16 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  
+    "https://bluerat1.github.io",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",      
+]# Allow credentials (e.g., cookies, authorization headers)
+CORS_ALLOW_CREDENTIALS = True
+
+# Allow all headers (simplify for development)
+CORS_ALLOW_ALL_HEADERS = True  # Or specify explicitly as you did
+
+CORS_ALLOW_ALL_ORIGINS = True
