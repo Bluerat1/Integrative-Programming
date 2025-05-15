@@ -4,4 +4,4 @@ from .models import EnergyData
 class EnergyDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = EnergyData
-        fields = ['id', 'device_name', 'voltage', 'current', 'power', 'energy', 'created_at']
+        fields = ['device_name', 'voltage', 'current', 'power', 'energy']
