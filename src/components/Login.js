@@ -1,38 +1,68 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api, { setAuthToken } from '../api';
+import axios from 'axios';
+import './Login.css';
 
-export default function Login() {
-  const [form, setForm] = useState({ username: '', password: '' });
+function Login() {
   const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     try {
-      const res = await api.post('auth/token/login/', form);
-      localStorage.setItem('token', res.data.auth_token);
-      setAuthToken(res.data.auth_token);
-      navigate('/');
-    } catch (err) { alert('Login failed'); }
+      const response = await axios.post(
+        'https://integrative-programming.onrender.com/api/auth/token/login/',
+        { username, password }
+      );
+      const token = response.data.auth_token;
+      localStorage.setItem('token', token);
+      navigate('/dashboard');
+    } catch (err) {
+      setError('Invalid username or password');
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-6 rounded shadow">
-      <h2 className="text-2xl mb-4">Login</h2>
-      <input
-        type="text"
-        placeholder="Username"
-        value={form.username}
-        onChange={e => setForm({ ...form, username: e.target.value })}
-        className="block w-full mb-3 p-2 border rounded"
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={form.password}
-        onChange={e => setForm({ ...form, password: e.target.value })}
-        className="block w-full mb-3 p-2 border rounded"
-      />
-      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Login</button>
-    </form>
+    <div className="login-container">
+      <div className="login-card">
+        <div className="logo">🔒</div>
+        <h2>Welcome Back</h2>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="username">Username</label>
+          <input
+            id="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+
+          {error && <p className="error-text">{error}</p>}
+
+          <button type="submit">Sign In</button>
+        </form>
+
+        <p className="redirect-text">
+          Don’t have an account?{' '}
+          <button className="link" onClick={() => navigate('/register')}>
+            Register
+          </button>
+        </p>
+      </div>
+    </div>
+  );
 }
+
+export default Login;

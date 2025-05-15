@@ -1,40 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import api from '../api';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
-export default function Dashboard() {
-  const [readings, setReadings] = useState([]);
 
-  useEffect(() => {
-    api.get('sensor-reading/')
-      .then(res => setReadings(res.data))
-      .catch(console.error);
-  }, []);
+const Register = ({ history }) => {
+const [form, setForm] = useState({ username: '', email: '', password: '' });
+  const { register } = useContext(AuthContext);
 
-  return (
-    <div className="bg-white p-6 rounded shadow">
-      <h2 className="text-2xl mb-4">Sensor Readings</h2>
-      <div className="overflow-x-auto">
-        <table className="min-w-full border">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="p-2">Device</th>
-              <th className="p-2">Voltage (V)</th>
-              <th className="p-2">Current (A)</th>
-              <th className="p-2">Power (W)</th>
-              <th className="p-2">Energy (kWh)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {readings.map((r, i) => (
-              <tr key={i} className="border-t">
-                <td className="p-2">{r.device_name}</td>
-                <td className="p-2">{r.voltage.toFixed(2)}</td>
-                <td className="p-2">{r.current.toFixed(4)}</n    <td className="p-2">{r.power.toFixed(4)}</td>
-                <td className="p-2">{r.energy.toFixed(4)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-}
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await register(form);
+    history.push('/login');
+  };
+
+return (
+    <form onSubmit={handleSubmit}>
+      <h2>Register</h2>
+       <input
+        name="email"
+        type="email"
+        onChange={handleChange}
+        placeholder="Email"
+        required
+      />
+      <input
+        name="username"
+        onChange={handleChange}
+        placeholder="Username"
+        required
+      />
+     
+      <input
+        name="password"
+        type="password"
+        onChange={handleChange}
+        placeholder="Password"
+        required
+      />
+      <button type="submit">Register</button>
+    </form>
+  );
+};
+export default Register;

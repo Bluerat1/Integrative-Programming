@@ -1,0 +1,76 @@
+/* Dashboard.css */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f2f5;
+}
+
+.dashboard-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+h2 {
+  margin: 0;
+  color: #333;
+}
+
+.logout-btn {
+  padding: 8px 16px;
+  background-color: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #dc2626;
+}
+
+.readings-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reading-item {
+  padding: 16px;
+  margin-bottom: 12px;
+  background: #f9fafb;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reading-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.reading-meta {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.reading-time {
+  font-size: 12px;
+  color: #9ca3af;
+}
