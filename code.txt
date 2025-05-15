@@ -7,8 +7,8 @@ EnergyMonitor emon;
 #define vCalibration 106.8
 #define currCalibration 0.52
 
-const char* ssid = "";          // Replace with your WiFi SSID
-const char* password = "";  // Replace with your WiFi password
+const char* ssid = "STUDENT-CONNECT";          // Replace with your WiFi SSID
+const char* password = "IloveUSTP!";  // Replace with your WiFi password
 const char* serverName = "https://integrative-programming.onrender.com"; // Replace with your Render.com URL
 const char* token = "1d084e127ffa9aa4c00f9e7f4b29e206a8befee4";   // Replace with user token from Django
 const char* deviceName = "ABCD Group";         // Replace with your device name
