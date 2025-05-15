@@ -99,11 +99,16 @@ WSGI_APPLICATION = 'energy_monitor.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',    # or sqlite3, mysql, etc.
+    'NAME': 'backendapipit',
+    'USER': 'backendapipit_user',
+    'PASSWORD': 'mma4MAD0AqKKW1n8z1Bx6JryT0eP6qPA',
+    'HOST': 'dpg-d0icf13e5dus738bpqr0-a',
+    'PORT': '5432',
+  }
 }
+
 DATABASES["default"] = dj_database_url.parse("postgresql://backendapipit_user:mma4MAD0AqKKW1n8z1Bx6JryT0eP6qPA@dpg-d0icf13e5dus738bpqr0-a.oregon-postgres.render.com/backendapipit")
 
 
