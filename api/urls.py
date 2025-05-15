@@ -2,7 +2,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import EnergyDataViewSet
-from .views import EnergyDataCreateView, ClearEnergyDataView
+from .views import ClearEnergyDataView
 
 router = DefaultRouter()
 router.register('energy-data', EnergyDataViewSet, basename='energydata')
