@@ -27,22 +27,9 @@ SECRET_KEY = 'django-insecure-&w9e=&#vg+rhlkasdee5zur--sm144q*jjohnz3@md9@!t+ty1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
 ALLOWED_HOSTS = ['*']
 
-CORS_ALLOW_METHODS = [
-    "GET",
-    "POST",
-    "PUT",
-    "PATCH",
-    "DELETE",
-    "OPTIONS",
-]
-
-CORS_ALLOW_HEADERS = [
-    "authorization",
-    "content-type",
-]
+AUTH_USER_MODEL = 'accounts.User'
 
 # Application definition
 
@@ -55,13 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'corsheaders',
     'djoser',
     'accounts',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -76,15 +61,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-}
-
 
 ROOT_URLCONF = 'authauth.urls'
 
@@ -122,13 +98,6 @@ DATABASES = {
 DATABASES["default"] = dj_database_url.parse("postgresql://backendapipit_user:mma4MAD0AqKKW1n8z1Bx6JryT0eP6qPA@dpg-d0icf13e5dus738bpqr0-a.oregon-postgres.render.com/backendapipit")
 
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  
-    "https://bluerat1.github.io",
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
-    "https://integrative-programming.onrender.com/",      
-]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -183,7 +152,7 @@ DJOSER = {
 
 CORS_ALLOW_CREDENTIALS = True
 
-
-CORS_ALLOW_ALL_HEADERS = True 
+# Allow all headers (simplify for development)
+CORS_ALLOW_ALL_HEADERS = True  # Or specify explicitly as you did
 
 CORS_ALLOW_ALL_ORIGINS = True

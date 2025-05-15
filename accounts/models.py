@@ -1,18 +1,20 @@
-# accounts/models.py
 from django.db import models
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 from .managers import CustomUserManager
 
-class User(AbstractUser, PermissionsMixin):
-    username = None
-    email = models.EmailField(_("email daw ni."), unique=True)
-    id_number = models.IntegerField(unique=True)
-    is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
+# accounts/models.py
+from django.contrib.auth.models import AbstractUser, PermissionsMixin
+from django.db import models
+from .managers import CustomUserManager
 
-    USERNAME_FIELD = "id_number"
-    REQUIRED_FIELD = ["email"]
+class User(AbstractUser, PermissionsMixin):
+    username = None  # We don't need the `username` field
+    email = models.EmailField(unique=True)
+    id_number = models.IntegerField(unique=True)
+
+    USERNAME_FIELD = 'id_number'  # Use `id_number` as the unique identifier
+    REQUIRED_FIELDS = ['email']  # Make sure email is required
 
     objects = CustomUserManager()
 
