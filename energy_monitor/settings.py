@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    'rest_framework',
+    'djoser',
     'api',
     'rest_framework.authtoken',  # If you're using the regular token auth
 
