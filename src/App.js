@@ -10,20 +10,16 @@ import PrivateRoute from './PrivateRoute';
 function App() {
   return (
     <AuthProvider>
-      <Router>
+      <Router basename="/Integpit">
         <Routes>
-          {/* root → login */}
-          <Route path="/" element={<Navigate to="/login" replace />} />
-
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Navigate to="login" replace />} />
+          <Route path="login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
-          <Route path="/dashboard" element={  <PrivateRoute>
+          <Route path="/dashboard" element={
+            <PrivateRoute>
               <Dashboard />
-            </PrivateRoute>} />
-
-
-          {/* any unknown URL → root */}
+            </PrivateRoute>
+          } />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>

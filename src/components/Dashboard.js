@@ -63,7 +63,7 @@ const Dashboard = () => {
     } finally {
       localStorage.removeItem('token');
       localStorage.removeItem('refreshToken');
-      navigate('login', { replace: true });
+      navigate(`${import.meta.env.BASE_URL || '/Integpit/'}login`, { replace: true });
     }
   };
 
