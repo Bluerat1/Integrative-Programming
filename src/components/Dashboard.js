@@ -43,29 +43,30 @@ const Dashboard = () => {
     return () => clearInterval(id);
   }, []);
 
-  const handleLogout = async () => {
-    const accessToken = localStorage.getItem('token');
-    const refreshToken = localStorage.getItem('refreshToken');
+const handleLogout = async () => {
+  const accessToken = localStorage.getItem('token');
+  const refreshToken = localStorage.getItem('refreshToken');
 
-    try {
-      await API.post(
-        '/auth/token/logout/',
-        { refresh: refreshToken },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-    } catch (err) {
-      console.error('Logout failed:', err);
-    } finally {
-      localStorage.removeItem('token');
-      localStorage.removeItem('refreshToken');
-      navigate(`${import.meta.env.BASE_URL || '/Integpit/'}login`, { replace: true });
-    }
-  };
+  try {
+    await API.post(
+      '/auth/token/logout/',
+      { refresh: refreshToken },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  } catch (err) {
+    console.error('Logout failed:', err);
+  } finally {
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+    navigate('login', { replace: true }); // ✅ use relative path for hash routing
+  }
+};
+
 
   return (
     <div className="dashboard-container">
