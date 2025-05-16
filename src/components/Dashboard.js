@@ -63,7 +63,7 @@ const Dashboard = () => {
     } finally {
       localStorage.removeItem('token');
       localStorage.removeItem('refreshToken');
-      navigate('/login', { replace: true });
+      navigate('login', { replace: true });
     }
   };
 
