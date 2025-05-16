@@ -63,7 +63,7 @@ const handleLogout = async () => {
   } finally {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
-    navigate('login', { replace: true }); // ✅ use relative path for hash routing
+    navigate('login', { replace: true }); 
   }
 };
 
