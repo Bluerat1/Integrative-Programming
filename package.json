@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "https://bluerat1.github.io/Integrative_Programming/",
+  "homepage": "https://bluerat1.github.io/Integpit",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
